@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Заказы пользователей — Админ-панель «Кухни мира»</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-radio {
+      display: none;
+    }
+
+    .orders-page {
+      display: none;
+    }
+
+    #page-1:checked ~ .page-1-block,
+    #page-2:checked ~ .page-2-block,
+    #page-3:checked ~ .page-3-block {
+      display: block;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .pagination label {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.2s;
+    }
+
+    .pagination label:hover {
+      background: #f1f5f9;
+    }
+
+    #page-1:checked ~ .pagination label[for="page-1"],
+    #page-2:checked ~ .pagination label[for="page-2"],
+    #page-3:checked ~ .pagination label[for="page-3"] {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .page-counter {
+      display: none;
+      font-size: 13px;
+      color: var(--muted);
+      margin-left: 8px;
+    }
+
+    #page-1:checked ~ .pagination .cnt-1,
+    #page-2:checked ~ .pagination .cnt-2,
+    #page-3:checked ~ .pagination .cnt-3 {
+      display: inline;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h2>Кухни мира</h2>
+        <small>Администратор: admin@champ2026</small>
+      </div>
+      <a href="recipes.html">Рецепты и шаги</a>
+      <a href="categories.html">Категории и ингредиенты</a>
+      <a href="orders.html" class="active">Заказы пользователей</a>
+      <a href="login.html" style="margin-top: auto; color: #f87171;">Выйти из системы</a>
+    </aside>
+
+    <main class="main">
+      <div id="saved-notice" class="toast-banner">
+        <span>Выбранный заказ удалён!</span>
+        <a href="#" style="color: #166534; text-decoration: none;">✕</a>
+      </div>
+
+      <div class="header-bar">
+        <div>
+          <h1>Заказы пользователей</h1>
+          <p style="color: var(--muted); font-size: 14px;">Пагинация по 5 заказов. Удаление доступно только для статусов «ошибка оплаты» и «истекло время на оплату».</p>
+        </div>
+      </div>
+
+      <section class="card">
+        <input type="radio" name="orders_page" id="page-1" class="page-radio" checked>
+        <input type="radio" name="orders_page" id="page-2" class="page-radio">
+        <input type="radio" name="orders_page" id="page-3" class="page-radio">
+
+        <!-- СТРАНИЦА 1 (Заказы 1–5) -->
+        <div class="table-wrap orders-page page-1-block">
+          <table>
+            <thead>
+              <tr>
+                <th>Клиент (fullname, email)</th>
+                <th>Список рецептов для покупки</th>
+                <th>Общая стоимость</th>
+                <th>Статус оплаты</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Иванов Иван Иванович</strong><br><small style="color:var(--muted)">ivanov@example.com</small></td>
+                <td>• Мастер-класс по борщу — 500.00 ₽<br>• Эчпочмак татарский — 450.00 ₽</td>
+                <td><strong>950.00 ₽</strong></td>
+                <td><span class="badge badge-paid">Оплачено</span></td>
+                <td><span style="color:var(--muted); font-size:12px;">Удаление недоступно</span></td>
+              </tr>
+              <tr>
+                <td><strong>Смирнова Елена Сергеевна</strong><br><small style="color:var(--muted)">smirnova@example.com</small></td>
+                <td>• Сырники домашние — 150.00 ₽</td>
+                <td><strong>150.00 ₽</strong></td>
+                <td><span class="badge badge-unpaid">Не оплачено</span></td>
+                <td><span style="color:var(--muted); font-size:12px;">Удаление недоступно</span></td>
+              </tr>
+              <tr>
+                <td><strong>Петров Алексей Николаевич</strong><br><small style="color:var(--muted)">petrov@example.com</small></td>
+                <td>• Уральские пельмени — 300.00 ₽</td>
+                <td><strong>300.00 ₽</strong></td>
+                <td><span class="badge badge-error">Ошибка оплаты</span></td>
+                <td><a href="#saved-notice" class="btn btn-sm btn-danger">Удалить заказ</a></td>
+              </tr>
+              <tr>
+                <td><strong>Козлова Мария Дмитриевна</strong><br><small style="color:var(--muted)">kozlova@example.com</small></td>
+                <td>• Мастер-класс по борщу — 500.00 ₽</td>
+                <td><strong>500.00 ₽</strong></td>
+                <td><span class="badge badge-expired">Истекло время на оплату</span></td>
+                <td><a href="#saved-notice" class="btn btn-sm btn-danger">Удалить заказ</a></td>
+              </tr>
+              <tr>
+                <td><strong>Волков Денис Андреевич</strong><br><small style="color:var(--muted)">volkov@example.com</small></td>
+                <td>• Эчпочмак татарский — 450.00 ₽</td>
+                <td><strong>450.00 ₽</strong></td>
+                <td><span class="badge badge-paid">Оплачено</span></td>
+                <td><span style="color:var(--muted); font-size:12px;">Удаление недоступно</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- СТРАНИЦА 2 (Заказы 6–10) -->
+        <div class="table-wrap orders-page page-2-block">
+          <table>
+            <thead>
+              <tr>
+                <th>Клиент (fullname, email)</th>
+                <th>Список рецептов для покупки</th>
+                <th>Общая стоимость</th>
+                <th>Статус оплаты</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Новикова Ольга Павловна</strong><br><small style="color:var(--muted)">novikova@example.com</small></td>
+                <td>• Уральские пельмени — 300.00 ₽</td>
+                <td><strong>300.00 ₽</strong></td>
+                <td><span class="badge badge-error">Ошибка оплаты</span></td>
+                <td><a href="#saved-notice" class="btn btn-sm btn-danger">Удалить заказ</a></td>
+              </tr>
+              <tr>
+                <td><strong>Морозов Артём Викторович</strong><br><small style="color:var(--muted)">morozov@example.com</small></td>
+                <td>• Сырники домашние — 150.00 ₽<br>• Эчпочмак татарский — 450.00 ₽</td>
+                <td><strong>600.00 ₽</strong></td>
+                <td><span class="badge badge-paid">Оплачено</span></td>
+                <td><span style="color:var(--muted); font-size:12px;">Удаление недоступно</span></td>
+              </tr>
+              <tr>
+                <td><strong>Соколова Анна Игоревна</strong><br><small style="color:var(--muted)">sokolova@example.com</small></td>
+                <td>• Мастер-класс по борщу — 500.00 ₽</td>
+                <td><strong>500.00 ₽</strong></td>
+                <td><span class="badge badge-unpaid">Не оплачено</span></td>
+                <td><span style="color:var(--muted); font-size:12px;">Удаление недоступно</span></td>
+              </tr>
+              <tr>
+                <td><strong>Лебедев Максим Олегович</strong><br><small style="color:var(--muted)">lebedev@example.com</small></td>
+                <td>• Уральские пельмени — 300.00 ₽</td>
+                <td><strong>300.00 ₽</strong></td>
+                <td><span class="badge badge-expired">Истекло время на оплату</span></td>
+                <td><a href="#saved-notice" class="btn btn-sm btn-danger">Удалить заказ</a></td>
+              </tr>
+              <tr>
+                <td><strong>Васильева Татьяна Юрьевна</strong><br><small style="color:var(--muted)">vasilieva@example.com</small></td>
+                <td>• Сырники домашние — 150.00 ₽</td>
+                <td><strong>150.00 ₽</strong></td>
+                <td><span class="badge badge-paid">Оплачено</span></td>
+                <td><span style="color:var(--muted); font-size:12px;">Удаление недоступно</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- СТРАНИЦА 3 (Заказы 11–15) -->
+        <div class="table-wrap orders-page page-3-block">
+          <table>
+            <thead>
+              <tr>
+                <th>Клиент (fullname, email)</th>
+                <th>Список рецептов для покупки</th>
+                <th>Общая стоимость</th>
+                <th>Статус оплаты</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+                   <!-- ...конец третьей таблицы... -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ДОБАВЬТЕ ЭТУ СТРОКУ ВРУЧНУЮ: -->
+        <div class="pagination">
+          <label for="page-1">1</label>
+          <label for="page-2">2</label>
+          <label for="page-3">3</label>
+          <span class="page-counter cnt-1">Показано 1–5 из 15 заказов</span>
+          <span class="page-counter cnt-2">Показано 6–10 из 15 заказов</span>
+          <span class="page-counter cnt-3">Показано 11–15 из 15 заказов</span>
+        </div>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>

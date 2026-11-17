@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Категории и ингредиенты — Админ-панель «Кухни мира»</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h2>Кухни мира</h2>
+        <small>Администратор: admin@champ2026</small>
+      </div>
+      <a href="recipes.html">Рецепты и шаги</a>
+      <a href="categories.html" class="active">Категории и ингредиенты</a>
+      <a href="orders.html">Заказы пользователей</a>
+      <a href="login.html" style="margin-top: auto; color: #f87171;">Выйти из системы</a>
+    </aside>
+
+    <main class="main">
+      <div id="saved-notice" class="toast-banner">
+        <span>Запись успешно сохранена!</span>
+        <a href="#" style="color: #166534; text-decoration: none;">✕</a>
+      </div>
+
+      <div class="header-bar">
+        <h1>Справочники: Категории и Ингредиенты</h1>
+      </div>
+
+      <div class="form-grid-2">
+        <section class="card">
+          <h2 class="card-title">Категории рецептов</h2>
+          <form action="#saved-notice" style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #e2e8f0;">
+            <div class="form-group">
+              <label for="cat-name">Название категории (уникальное, макс. 40 символов) *</label>
+              <input type="text" id="cat-name" maxlength="40" class="form-control" placeholder="Например: Первые блюда" required>
+              <span class="css-live-error">Название категории обязательно (максимум 40 символов).</span>
+            </div>
+            <button type="submit" class="btn">Сохранить категорию</button>
+          </form>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Название</th>
+                <th>Рецептов</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Первые блюда</strong></td>
+                <td>12</td>
+                <td>
+                  <a href="#cat-name" class="btn btn-sm">Ред.</a>
+                  <button type="button" class="btn btn-sm" disabled title="Запрещено удалять категорию, если в ней есть рецепты">Удалить</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Национальная выпечка</strong></td>
+                <td>8</td>
+                <td>
+                  <a href="#cat-name" class="btn btn-sm">Ред.</a>
+                  <button type="button" class="btn btn-sm" disabled title="Запрещено удалять категорию, если в ней есть рецепты">Удалить</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Напитки народов мира</strong></td>
+                <td>0</td>
+                <td>
+                  <a href="#cat-name" class="btn btn-sm">Ред.</a>
+                  <a href="#saved-notice" class="btn btn-sm btn-danger">Удалить</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card">
+          <h2 class="card-title">Ингредиенты</h2>
+          <form action="#saved-notice" style="margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #e2e8f0;">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="ing-title">Название (уникальное, макс. 20 симв.) *</label>
+                <input type="text" id="ing-title" maxlength="20" class="form-control" placeholder="Например: Свекла" required>
+                <span class="css-live-error">Обязательное поле (до 20 символов).</span>
+              </div>
+              <div class="form-group">
+                <label for="ing-unit">Единица измерения *</label>
+                <select id="ing-unit" class="form-control" required>
+                  <option value="шт">шт</option>
+                  <option value="л">л</option>
+                  <option value="кг">кг</option>
+                  <option value="мг">мг</option>
+                  <option value="ст.л.">ст.л.</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn">Сохранить ингредиент</button>
+          </form>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Название (title)</th>
+                <th>Ед. измерения (unit)</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Свекла</strong></td>
+                <td>шт</td>
+                <td>
+                  <a href="#ing-title" class="btn btn-sm">Ред.</a>
+                  <a href="#saved-notice" class="btn btn-sm btn-danger">Удалить</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Молоко</strong></td>
+                <td>л</td>
+                <td>
+                  <a href="#ing-title" class="btn btn-sm">Ред.</a>
+                  <a href="#saved-notice" class="btn btn-sm btn-danger">Удалить</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Мука пшеничная</strong></td>
+                <td>кг</td>
+                <td>
+                  <a href="#ing-title" class="btn btn-sm">Ред.</a>
+                  <a href="#saved-notice" class="btn btn-sm btn-danger">Удалить</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Соль поваренная</strong></td>
+                <td>мг</td>
+                <td>
+                  <a href="#ing-title" class="btn btn-sm">Ред.</a>
+                  <a href="#saved-notice" class="btn btn-sm btn-danger">Удалить</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Масло растительное</strong></td>
+                <td>ст.л.</td>
+                <td>
+                  <a href="#ing-title" class="btn btn-sm">Ред.</a>
+                  <a href="#saved-notice" class="btn btn-sm btn-danger">Удалить</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
+
+
